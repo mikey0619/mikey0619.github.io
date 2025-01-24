@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<div id="container"></div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script type="module">
+
+  console.log(d3); // test if d3 is loaded
+  // Add an SVG
+  const svg = d3.select("#container")
+    .append("svg")
+    .attr("width", 800)
+    .attr("height", 600)
+    .style("background-color", "lightgrey");
+  // Add Rectangles (copilot)
+  const rect = d3.select("svg")
+    .append("rect")
+    .attr("x", 100)
+    .attr("y", 100)
+    .attr("width", 200)
+    .attr("height", 100)
+    .attr("fill", "blue");
+  // Add Circles (copilot)
+  const circle = d3.select("svg")
+    .append("circle")
+    .attr("cx", 400)
+    .attr("cy", 300)
+    .attr("r", 50)
+    .attr("fill", "red");
+  // Add Lines (copilot)
+  const line = d3.select("svg")
+    .append("line")
+    .attr("x1", 500)
+    .attr("y1", 100)
+    .attr("x2", 700)
+    .attr("y2", 200)
+    .attr("stroke", "green")
+    .attr("stroke-width", 5);
+  // Add Polygons (copilot)
+  const poly = d3.select("svg")
+    .append("polygon")
+    .attr("points", "600,300 700,400 700,300")
+    .attr("fill", "yellow");
+  
+  // Rubik's cube
+  // .on to scramble pieces is from copilot
+  const base1 = d3.select("svg")
+    .append("rect")
+    .attr("x", 50)
+    .attr("y", 400)
+    .attr("width", 199)
+    .attr("height", 199)
+    .attr("fill", "black");
+  const piece1 = d3.select("svg")
+    .append("rect")
+    .attr("x", 50)
+    .attr("y", 400)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece2 = d3.select("svg")
+    .append("rect")
+    .attr("x", 117)
+    .attr("y", 400)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece3 = d3.select("svg")
+    .append("rect")
+    .attr("x", 184)
+    .attr("y", 400)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+    const piece4 = d3.select("svg")
+    .append("rect")
+    .attr("x", 50)
+    .attr("y", 467)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece5 = d3.select("svg")
+    .append("rect")
+    .attr("x", 117)
+    .attr("y", 467)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red");
+  const piece6 = d3.select("svg")
+    .append("rect")
+    .attr("x", 184)
+    .attr("y", 467)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece7 = d3.select("svg")
+    .append("rect")
+    .attr("x", 50)
+    .attr("y", 534)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece8 = d3.select("svg")
+    .append("rect")
+    .attr("x", 117)
+    .attr("y", 534)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+  const piece9 = d3.select("svg")
+    .append("rect")
+    .attr("x", 184)
+    .attr("y", 534)
+    .attr("width", 65)
+    .attr("height", 65)
+    .attr("fill", "red")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const line1 = d3.select("svg")
+    .append("line")
+    .attr("x1", 250)
+    .attr("y1", 400)
+    .attr("x2", 350)
+    .attr("y2", 350)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line2 = d3.select("svg")
+    .append("line")
+    .attr("x1", 250)
+    .attr("y1", 600)
+    .attr("x2", 350)
+    .attr("y2", 550)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line3 = d3.select("svg")
+    .append("line")
+    .attr("x1", 350)
+    .attr("y1", 350)
+    .attr("x2", 350)
+    .attr("y2", 550)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line4 = d3.select("svg")
+    .append("line")
+    .attr("x1", 250)
+    .attr("y1", 400)
+    .attr("x2", 250)
+    .attr("y2", 600)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+    
+  const line5 = d3.select("svg")
+    .append("line")
+    .attr("x1", 50)
+    .attr("y1", 400)
+    .attr("x2", 250)
+    .attr("y2", 400)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line6 = d3.select("svg")
+    .append("line")
+    .attr("x1", 50)
+    .attr("y1", 600)
+    .attr("x2", 250)
+    .attr("y2", 600)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line7 = d3.select("svg")
+    .append("line")
+    .attr("x1", 50)
+    .attr("y1", 400)
+    .attr("x2", 50)
+    .attr("y2", 600)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line8 = d3.select("svg")
+    .append("line")
+    .attr("x1", 125)
+    .attr("y1", 350)
+    .attr("x2", 350)
+    .attr("y2", 350)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line9 = d3.select("svg")
+    .append("line")
+    .attr("x1", 50)
+    .attr("y1", 400)
+    .attr("x2", 125)
+    .attr("y2", 350)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5);
+
+  const line10 = d3.select("svg")
+    .append("line")
+    .attr("x1", 250)
+    .attr("y1", 533)
+    .attr("x2", 350)
+    .attr("y2", 485)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line11 = d3.select("svg")
+    .append("line")
+    .attr("x1", 250)
+    .attr("y1", 469)
+    .attr("x2", 350)
+    .attr("y2", 420)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line12 = d3.select("svg")
+    .append("line")
+    .attr("x1", 290)
+    .attr("y1", 580)
+    .attr("x2", 290)
+    .attr("y2", 380)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+  
+  const line13 = d3.select("svg")
+    .append("line")
+    .attr("x1", 320)
+    .attr("y1", 565)
+    .attr("x2", 320)
+    .attr("y2", 365)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line14 = d3.select("svg")
+    .append("line")
+    .attr("x1", 180)
+    .attr("y1", 400)
+    .attr("x2", 280)
+    .attr("y2", 350)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line15 = d3.select("svg")
+    .append("line")
+    .attr("x1", 113)
+    .attr("y1", 400)
+    .attr("x2", 200)
+    .attr("y2", 350)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line16 = d3.select("svg")
+    .append("line")
+    .attr("x1", 100)
+    .attr("y1", 366)
+    .attr("x2", 320)
+    .attr("y2", 366)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const line17 = d3.select("svg")
+    .append("line")
+    .attr("x1", 80)
+    .attr("y1", 380)
+    .attr("x2", 285)
+    .attr("y2", 380)
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
+
+  const yellow1 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "83,381 145,381 115,398 58,398")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow2 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "148,381 215,381 183,398 118,398")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow3 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "220,381 285,381 250,398 185,398")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow4 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "86,379 148,379 168,367 104,367")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow5 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "150,379 220,379 244,367 170,367")
+    .attr("fill", "yellow");
+
+  const yellow6 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "224,379 286,379 312,367 248,367")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow7 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "107,365 172,365 195,352 125,352")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow8 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "175,365 248,365 274,352 199,352")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const yellow9 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "251,365 314,365 340,352 276,352")
+    .attr("fill", "yellow")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue1 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "289,383 252,401 252,467 289,449")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue2 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "289,451 252,469 252,531 289,514")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue3 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "289,515 252,533 252,599 289,578")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue4 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "291,382 319,368 319,434 291,448")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue5 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "291,450 319,436 319,499 291,513")
+    .attr("fill", "blue");
+
+  const blue6 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "291,514 319,500 319,563 291,578")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue7 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "320,367 348,353 348,420 320,434")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue8 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "320,435 348,421 348,485 320,499")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+  const blue9 = d3.select("svg")
+    .append("polygon")
+    .attr("points", "320,500 348,486 348,549 320,562")
+    .attr("fill", "blue")
+    .on('click', function() {
+      var colors = ["red", "yellow", "blue", "green", "white", "orange"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      d3.select(this).attr("fill", randomColor);
+    });
+
+</script>
