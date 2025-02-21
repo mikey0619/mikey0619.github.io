@@ -1,87 +1,112 @@
-Assignment 1 - Hello World: GitHub and d3  
+Assignment 3 - Replicating a Classic Experiment  
 ===
 
-This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
+For the scope of this project, assume the role of a scientist who runs experiments for a living.
 
-The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
+For example: 
 
-The secondary goals are to 1) introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations, and 2) teach you how to host your web-based visualizations on a web-server, which opens up a world of possibilities.
+Q: How do we know that bar charts are "better" than pie charts?  
+A: Controlled experiments!
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found on any project, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing.
-For AI-generated code, please see the policy in the syllabus.
+In this assignment you'll implement a simple controlled experiment using some of the visualizations you’ve been building in this class. 
+You'll need to develop support code for the experiment sequence, results file output, and other experiment components. 
+(These are all simple with Javascript buttons and forms.)
+The main goals for you are to a) test at least three competing visualizations or experiment conditions, b) implement data/stimuli generation and error calculation functions (if following the baseline, use Cleveland and McGill's 1984 paper and Heer and Bostock's 2010 replication), c) run the experiment with 10 participants (or equivalent number of trials), and d) do basic analysis and reporting of the results.
 
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
+For this assignment you should aim to write everything from scratch. For experimentation it is often necessary to control all elements of the chart.
+You should definitely *reference* demo programs from books or the web, and if you do please provide a References section with links at the end of your Readme.
 
-Resources
+Going Beyond Cleveland-McGill
 ---
 
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
+Several have expressed interest in conducting surveys of various sorts. I encourage you go move beyond Cleveland and McGill if you can think of other interesting visualization experiment designs and corresponding analyses. 
 
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
+You might study how people interpret COVID visualizations or design an experiment on shapes or color, for example.
+If you decide to go in a custom route, do plan to sync with staff so we can help you set acceptable parameters that would be fair to folks following the original route.
+
+(Basically, we still want you to do a multi-trial study with each participant, to raise the chance that you get solid results.)
+
+How you measure "error" and similar facets also matter. But you can't go wrong with finding a good visualization study online to start from :)
 
 Requirements
 ---
 
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the sources of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
+- Look it over Cleveland and McGill's original experiment (see the section below) and [watch this video](https://www.loom.com/share/636660b72d00436a8ae910f91d67a0c7) to get a sense of the experiment structure and where your visualizations will go.
+- When viewing the example experiment video, note the following:
+    - Trials are in random order.  
+    - Each trial has a randomly generated set of 5-10 data points.  
+    - Two of these data points are marked.  
+    - (Note: the experiment UI and User Experience could be better. Plenty of design achievements here).
+- Implement the data generation code **as described in the Cleveland & McGill and Heer & Bostock papers**. 
+    - The goal is to generate a set of random datapoints (usually 5 or 10, with values be between 0 and 100) and to mark two of them for comparison in the trial. 
+- Add 3 visualizations (i.e. conditions) to your experiment. When you are adding these visualizations, think about *why* these visualizations are interesting to test. In other words, keep in mind a *testable hypothesis* for each of the added visualization. Some good options include bar charts, pie charts, stacked-bar charts, and treemaps. You can also rotate your bar chart to be horizontal or upside-down as one of your conditions. You are encouraged to test unorthodox charts -- radar charts come to mind, but there are MANY possibilities here-- feel free to be creative!
+    - Follow the style from Cleveland and McGill closely (e.g. no color, simple lines) unless you are specifically testing a hypothesis (e.g. color versus no color). Pay attention to spacing between elements like bars. Do not mark bars for comparison using color-- this makes the perceptual task too easy.
+- After each trial, implement code that grades and stores participant’s responses.
+- At the end of the experiment, to get the data, one easy option use Javascript to show the data from the current experiment\* (i.e. a comma separated list in a text box) and copy it into your master datafile. See the Background section below for an example of what this file should look like. (\*Alternately implement a server, if you're experienced with that sort of thing.)
+
+** DATA SCIENTISTS! IT IS YOUR TIME TO SHINE **
+
+- Figure out how to calculate "Error", the difference between the true percentage and the reported percentage.
+- Scale this error using Cleveland and McGill’s log-base-2 error equation. For details, see the background section (there’s a figure with the equation). This becomes your “Error” column in the output. Make sure you use whole percentages (not decimal) in the log-base-2 equation. Make sure you handle the case of when a person gets the exact percentage correct (log-base-2 of 1/8 is -3, it is better to set this to 0). 
+- Run your experiment with 10 or more participants, or-- make sure you get at least 200 trials **per visualization type** in total.  
+    - Grab friends or people in the class.   
+    - Run at least 20 trials per visualization type, per participant. This is to ensure that you cover the range of possible answers (e.g. 5%, 10%, ..., 95%)
+- Make sure to save the resulting CSV after each participant. Compile the results into a master csv file (all participants, all trials).
+- Produce a README with figures that shows the visualizations you tested and results, ordered by best performance to worst performance. Follow the modern Cleveland-McGill figure below -- though note that using names instead of icons is fine.
+- To obtain the ranking, calculate and report the average log2Error for each visualization across all trials and participants. This should be straightforward to do in a spreadsheet.
+- Use Bootstrapped 95\% confidence intervals for your error upper and lower bounds. Include these in your figures. Bootstrapped confidence intervals are easily implemented in R + ggplot2 using the `stat_summary` geom. You can also use Excel, Python, or many many other tools. Bootstrapped 95% CIs are **very** useful in modern experiment practice.
+- Include example images of each visualization as they appeared in your experiment (i.e. if you used a pie chart show the actual pie chart you used in the experiment along with the markings, not an example from Google Images).
+
+## General Requirements
+
+0. Your code should be forked from the GitHub repo and linked using GitHub pages.
+2. Your project should use d3 to build visualizations. 
+3. Your writeup (readme.md in the repo) should contain the following:
+
+- Working link to the experiment hosted on gh-pages or some other site.
+- Concise description and screenshot of your experiment.
+- Description of the technical achievements you attempted with this project.
+- Description of the design achievements you attempted with this project.
+
+Background
+---
+
+In 1984, William Cleveland and Robert McGill published the results of several controlled experiments that pitted bar charts against pies and stacked-bar variants. 
+Their paper (http://www.cs.ubc.ca/~tmm/courses/cpsc533c-04-spr/readings/cleveland.pdf) (http://info.slis.indiana.edu/~katy/S637-S11/cleveland84.pdf) is considered a key paper in data visualization.
+In particular, they ran a psychology-style experiment where users were shown a series of randomly-generated charts with two graphical elements marked like this:
+
+![cleveland bar chart](img/cleveland-bar.png)
+
+Participants were then asked, "What percentage is the smaller of the larger?". 
+This was repeated hundreds of time with varying data and charts. 
+By the end of the study, Cleveland and McGill had amassed a large dataset that looked like this:
+
+![cleveland table](img/cleveland-table.png)
+
+__Log-base-2 or "cm-error"__: The true percent is the actual percentage of the smaller to the larger, while the reported percent is what participants reported. 
+Cleveland and McGill recognized that their analyses would be biased if they took `abs(ReportedPercent – TruePercent)` as their score for error. 
+To compensate, they came up with a logarithmic scale for error with this equation:
+
+![cleveland equation](img/cleveland-equation.png)
+
+You’ll be implementing this error score as part of the lab. 
+(Hint: it’s not a trick question, this is just to familiarize you with the experiment protocol). 
+With this Cleveland-McGill error score you can better compare the performance of the charts you test to figure out which one performs the best.
+
+As a baseline, compare your average Error scores to the following chart, which include both Cleveland and McGill’s results as well as more recent extensions of this experiment (lower error indicates better performance, and error bars are bootstrapped 95% confidence intervals (`http://en.wikipedia.org/wiki/Confidence_interval#Meaning_and_interpretation`)):
+
+![cleveland results](img/cleveland-results.png)
 
 GitHub Details
 ---
 
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
+- Fork the GitHub Repository. You now have a copy associated with your username.
 - Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help on making branches match. Spend some time learning this if you're new!
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
-
-Submission Details
----
+- Make sure your "master" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
+- Edit this README.md with a link to your gh-pages site: e.g. http://YourUsernameGoesHere.github.io/Experiment/index.html
+- Replace this file (README.md) with your writeup and Design/Technical achievements.
 - To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
+- Name your submission using the following scheme: 
 ```
-a1-your Gh username-your first name-your lastname
-
+a3-FirstLastnameMember1-FirstLastnameMember2-FirstLastnameMember3-...
 ```
-
-Vis Details
----
-
-For this project you should use d3.js. Later projects will use other tools (e.g. Python libraries), but d3 is the industry standard for now.
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
-
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
-
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Please go beyond the minimum requirements of this project-- we've made it SUPER basic so you can explore, or fill in any gaps in your understanding of web coding.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Paths  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
-

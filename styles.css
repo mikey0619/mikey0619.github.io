@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#experiment-screen, #thank-you-screen {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#welcome-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    height: 100vh;  
+    text-align: center;  
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 250px;  
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 120%;  
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 14px;
+    white-space: normal; 
+    word-wrap: break-word; 
+    max-width: 300px; 
+    z-index: 1000; /* Keeps it above other elements */
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
