@@ -1,6 +1,7 @@
 **Final Visualization Project**
 
 **Summary**
+
 Our final project was a data visualization of NBA MVP statistics from the 2023-2024 season. The visualization contains basic statistics such as shot results, pass results, fouls, and turnovers.
 
 **Libraries**
