@@ -25,7 +25,10 @@ Host Site - [https://mikey0619.github.io](https://mikey0619.github.io)
 3. Combine the raw player .json file with the template to achieve a properly formatted player data file (combineDatasets.py)
 
 **Visualization Features**
+
 Sankey Diagram - Our visualization utilizes two Sankey diagrams back to back to display a contrast between the two players selected.
+
 Player Selection - Player selection is done by clicking on a player image to load their visualization, depending on what side of the screen was selected. Additionally, when hovered over, the player image enlargens, and when selected, a gold border is present to indicate that the selection occurred.
+
 Interactive Visualization - The actual diagrams themselves contain logic so that when a link is hovered over, it will darken and the rest of the graph will lighten. In addition, the corresponding link on the other graph will highlight to better display a comparison. The statistic that is being compared will appear in a bubble, showing the two values of said statistic.
 
