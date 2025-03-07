@@ -13,7 +13,7 @@ const svg = d3.select(".visualization-container")
 
 
 const datasetMapping = {
-    "LeBron James": "Lebron_James_updated",
+    "LeBron James": "LeBron_James_updated",
     "Nikola Jokic": "Nikola_Jokic_updated",
     "Giannis Antetokounmpo": "Giannis_Antetokounmpo_updated",
     "Kevin Durant": "Kevin_Durant_updated",
