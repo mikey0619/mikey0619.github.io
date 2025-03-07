@@ -1,8 +1,10 @@
 .page-title {
-    text-align: center;
+    text-align: left; /* Align text to the left */
     font-size: 2em;
     margin-top: 20px;
+    margin-left: 20px; /* Push it from the left */
 }
+
 
 body {
     background-color: #c48c46;
@@ -12,12 +14,13 @@ body {
         linear-gradient(90deg, rgba(0, 0, 0, 0.2) 3px, transparent 3px 30px, rgba(0, 0, 0, 0.2) 31px, transparent 31px 60px),
         linear-gradient(0deg, rgba(0, 0, 0, 0.1) 3px, transparent 3px 30px, rgba(0, 0, 0, 0.1) 31px, transparent 31px 60px);
     background-size: 60px 60px;
-    display: flex;
+    display: black;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    padding: 20px;
 }
 
 body::before {
