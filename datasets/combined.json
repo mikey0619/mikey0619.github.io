@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    { "name": "LeBron" },
+    { "name": "Jokic" },
+    { "name": "Shot" },
+    { "name": "Pass" },
+    { "name": "2P" },
+    { "name": "3P" },
+    { "name": "Rim 2PA" },
+    { "name": "Short 2PA" },
+    { "name": "Long 2PA" },
+    { "name": "Make" },
+    { "name": "Miss" },
+    { "name": "Assist" },
+    { "name": "No Assist" },
+    { "name": "Turnover" }
+  ],
+  "links": [
+    { "source": 0, "target": 2, "value": 1269, "player": "LeBron", "color": "#3498db" },
+    { "source": 0, "target": 3, "value": 3547, "player": "LeBron", "color": "#3498db" },
+    { "source": 1, "target": 2, "value": 1411, "player": "Jokic", "color": "#e74c3c" },
+    { "source": 1, "target": 3, "value": 5768, "player": "Jokic", "color": "#e74c3c" },
+    { "source": 2, "target": 4, "value": 906, "player": "LeBron", "color": "#3498db" },
+    { "source": 2, "target": 5, "value": 363, "player": "LeBron", "color": "#3498db" },
+    { "source": 3, "target": 6, "value": 475, "player": "Jokic", "color": "#e74c3c" },
+    { "source": 3, "target": 7, "value": 571, "player": "Jokic", "color": "#e74c3c" },
+    { "source": 4, "target": 8, "value": 546, "player": "LeBron", "color": "#3498db" },
+    { "source": 4, "target": 9, "value": 546, "player": "LeBron", "color": "#3498db" },
+    { "source": 5, "target": 10, "value": 589, "player": "LeBron", "color": "#3498db" },
+    { "source": 6, "target": 11, "value": 4823, "player": "Jokic", "color": "#e74c3c" },
+    { "source": 7, "target": 12, "value": 237, "player": "Jokic", "color": "#e74c3c" }
+  ]
+}

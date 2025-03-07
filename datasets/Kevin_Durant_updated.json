@@ -1,0 +1,185 @@
+{
+    "nodes": [
+        {
+            "name": " "
+        },
+        {
+            "name": "Shot"
+        },
+        {
+            "name": "Pass"
+        },
+        {
+            "name": "Foul"
+        },
+        {
+            "name": "TO"
+        },
+        {
+            "name": "2P"
+        },
+        {
+            "name": "3P"
+        },
+        {
+            "name": "2P Make"
+        },
+        {
+            "name": "2P Miss"
+        },
+        {
+            "name": "3P Make"
+        },
+        {
+            "name": "3P Miss"
+        },
+        {
+            "name": "Assist"
+        },
+        {
+            "name": "Bad Pass (Steal)"
+        },
+        {
+            "name": "Bad Pass (OB)"
+        },
+        {
+            "name": "Turnover"
+        },
+        {
+            "name": "Getting Fouled"
+        },
+        {
+            "name": "Offensive Foul"
+        },
+        {
+            "name": "Shooting Foul"
+        },
+        {
+            "name": "Dead Ball"
+        },
+        {
+            "name": "FT Make"
+        },
+        {
+            "name": "FT Miss"
+        },
+        {
+            "name": "Charge"
+        },
+        {
+            "name": "Loose Ball"
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 1,
+            "value": 1436
+        },
+        {
+            "source": 0,
+            "target": 2,
+            "value": 496
+        },
+        {
+            "source": 0,
+            "target": 3,
+            "value": 143
+        },
+        {
+            "source": 0,
+            "target": 4,
+            "value": 244
+        },
+        {
+            "source": 1,
+            "target": 5,
+            "value": 1029
+        },
+        {
+            "source": 1,
+            "target": 6,
+            "value": 407
+        },
+        {
+            "source": 5,
+            "target": 7,
+            "value": 583
+        },
+        {
+            "source": 5,
+            "target": 8,
+            "value": 446
+        },
+        {
+            "source": 6,
+            "target": 9,
+            "value": 168
+        },
+        {
+            "source": 6,
+            "target": 10,
+            "value": 239
+        },
+        {
+            "source": 2,
+            "target": 11,
+            "value": 378
+        },
+        {
+            "source": 2,
+            "target": 14,
+            "value": 118
+        },
+        {
+            "source": 14,
+            "target": 12,
+            "value": 93
+        },
+        {
+            "source": 14,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "source": 3,
+            "target": 15,
+            "value": 133
+        },
+        {
+            "source": 3,
+            "target": 16,
+            "value": 10
+        },
+        {
+            "source": 15,
+            "target": 17,
+            "value": 68
+        },
+        {
+            "source": 15,
+            "target": 18,
+            "value": 65
+        },
+        {
+            "source": 17,
+            "target": 19,
+            "value": 68
+        },
+        {
+            "source": 17,
+            "target": 20,
+            "value": 61
+        },
+        {
+            "source": 16,
+            "target": 21,
+            "value": 4
+        },
+        {
+            "source": 16,
+            "target": 22,
+            "value": 6
+        }
+    ]
+}

@@ -3,46 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualization Experiment</title>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script defer src="experiment.js"></script>
-    <script defer src="visualizations.js"></script>
-    <link href="styles.css" rel="stylesheet">
+    <title>NBA MVP Statistics Visualization</title>
+    <link rel="stylesheet" href="court.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <style>
+        .top-centered-title {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #c48c46;
+            background-image: 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.2) 3px, transparent 3px 30px, rgba(0, 0, 0, 0.2) 31px, transparent 31px 60px),
+                linear-gradient(0deg, rgba(0, 0, 0, 0.1) 3px, transparent 3px 30px, rgba(0, 0, 0, 0.1) 31px, transparent 31px 60px);
+            background-size: 60px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .three-point-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60vw;
+            height: 30vw;
+            max-width: 600px;
+            max-height: 300px;
+            border: 5px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            clip-path: inset(50% 0 0 0);
+            z-index: -1; /* Ensures it's behind everything */
+        }
+
+        .main-container {
+            display: flex;
+            position: relative;
+            justify-content: space-between; /* Push images to the edges */
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+        }
+
+        .player-container2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+            z-index: 10000;
+        }
+
+        .left-container {
+            left: 20px; /* Push to the far left */
+        }
+
+        .left-container2 {
+            left: 200px;
+        }
+
+        .right-container {
+            right: 20px; /* Push to the far right */
+        }
+
+        .right-container2 {
+            right: 200px; /* Push to the far right */
+        }
+
+        .visualization-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1; /* Take all remaining space */
+            max-width: 1200px; /* Prevent it from shrinking too much */
+            margin-left: 220px;
+            z-index: 1;
+            position: relative;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .player {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .player img {
+            width: 150px; /* Adjust size */
+            height: 112px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+        }
+
+        .player:hover {
+            transform: scale(1.1);
+        }
+
+        .player.selected img {
+            border-color: gold;
+        }
+
+
+    </style>
 </head>
 <body>
-    <div id="welcome-screen">
-        <h1>Welcome to the Visualization Experiment</h1>
-        <span class="tooltip">
-            ❓
-            <span class="tooltip-text">In 1984, William Cleveland and Robert McGill 
-                published the results of several controlled experiments that pitted 
-                bar charts against pies and stacked-bar variants. Their paper 
-                is considered a key paper in data visualization. In particular, 
-                they ran a psychology-style experiment where users were shown a series 
-                of randomly-generated charts with two graphical elements. Participants 
-                were then asked, "What percentage is the smaller of the larger?". 
-                This was repeated hundreds of time with varying data and charts.</span>
-        </span>
-        <p>You will complete 60 trials by comparing data in different visualizations.</p>
-        <button id="start-button">Start Experiment</button>
-    </div>
-
-    <div id="experiment-screen" style="display: none;">
-        <h2 id="trial-count">Trial: <span id="current-trial">1</span> / 60</h2>
-        <div style="width: 100%; background-color: #4d5b4e; height: 20px; border-radius: 10px; margin-bottom: 10px;">
-        <div id="progress-bar" style="width: 1.6%; height: 100%; background-color: #13dd13; border-radius: 10px;"></div>
+    <h1 class="top-centered-title">NBA MVP Statistics Visualization</h1>
+    <div class="controls">
+        <!-- Left Side Selection -->
+        <div class="player-container left-container">
+            <p><b>Select Left Player</b></p>
+            <div class="player" onclick="selectPlayer('LeBron James', 1)">
+                <img src="images/LeBron.png" alt="LeBron James">
+                <p>LeBron James</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Nikola Jokic', 1)">
+                <img src="images/Jokic.avif" alt="Nikola Jokic">
+                <p>Nikola Jokic</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Jalen Brunson', 1)">
+                <img src="images/Brunson.png" alt="Jalen Brunson">
+                <p>Jalen Brunson</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Kevin Durant', 1)">
+                <img src="images/Durant.avif" alt="Kevin Durant">
+                <p>Kevin Durant</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Luka Doncic', 1)">
+                <img src="images/Luka.webp" alt="Luka Doncic">
+                <p>Luka Doncic</p>
+            </div>
         </div>
-    
-        <svg id="chart" width="400" height="300"></svg>
-        <p>What percentage is the smaller value relative to the larger value?(Indicated with dots)</p>
-        <input type="number" id="response" placeholder="Enter percentage">
-        <button id="submit-button">Submit</button>
+
+        <div class="player-container2 left-container2">
+            <div class="player" onclick="selectPlayer('Anthony Edwards', 1)">
+                <img src="images/Edwards.avif" alt="Anthony Edwards">
+                <p>Anthony Edwards</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Jayson Tatum', 1)">
+                <img src="images/Tatum.avif" alt="Jayson Tatum">
+                <p>Jayson Tatum</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Shai Gilgeous-Alexander', 1)">
+                <img src="images/SGA.webp" alt="Shai Gilgeous-Alexander">
+                <p>Shai Gilgeous-Alexander</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Domantas Sabonis', 1)">
+                <img src="images/Sabonis.avif" alt="Domantas Sabonis">
+                <p>Domantas Sabonis</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Giannis Antetokounmpo', 1)">
+                <img src="images/Giannis.webp" alt="Giannis Antetokounmpo">
+                <p>Giannis Antetokounmpo</p>
+            </div>
+        </div>
+
+        <!-- Visualization (SVG Sankey Diagram) -->
+        <div class="visualization-container">
+            <svg width="1200" height="800"></svg>
+        </div>
+
+        <!-- Right Side Selection -->
+        <div class="player-container right-container">
+            <p><b>Select Right Player</b></p>
+            <div class="player" onclick="selectPlayer('LeBron James', 2)">
+                <img src="images/LeBron.png" alt="LeBron James">
+                <p>LeBron James</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Nikola Jokic', 2)">
+                <img src="images/Jokic.avif" alt="Nikola Jokic">
+                <p>Nikola Jokic</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Jalen Brunson', 2)">
+                <img src="images/Brunson.png" alt="Jalen Brunson">
+                <p>Jalen Brunson</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Kevin Durant', 2)">
+                <img src="images/Durant.avif" alt="Kevin Durant">
+                <p>Kevin Durant</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Luka Doncic', 2)">
+                <img src="images/Luka.webp" alt="Luka Doncic">
+                <p>Luka Doncic</p>
+            </div>
+        </div>
+
+        <div class="player-container2 right-container2">            
+            <div class="player" onclick="selectPlayer('Anthony Edwards', 2)">
+                <img src="images/Edwards.avif" alt="Anthony Edwards">
+                <p>Anthony Edwards</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Jayson Tatum', 2)">
+                <img src="images/Tatum.avif" alt="Jayson Tatum">
+                <p>Jayson Tatum</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Shai Gilgeous-Alexander', 2)">
+                <img src="images/SGA.webp" alt="Shai Gilgeous-Alexander">
+                <p>Shai Gilgeous-Alexander</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Domantas Sabonis', 2)">
+                <img src="images/Sabonis.avif" alt="Domantas Sabonis">
+                <p>Domantas Sabonis</p>
+            </div>
+            <div class="player" onclick="selectPlayer('Giannis Antetokounmpo', 2)">
+                <img src="images/Giannis.webp" alt="Giannis Antetokounmpo">
+                <p>Giannis Antetokounmpo</p>
+            </div>
+        </div>
     </div>
 
-    <div id="thank-you-screen" style="display: none;">
-        <h1>Thank You!</h1>
-        <p>Your responses have been recorded.</p>
-        <button id="download-button">Download Results</button>
-    </div>
+    <svg width="800" height="500"></svg>
+
+    <script src="sankey.js"></script>
 </body>
 </html>
